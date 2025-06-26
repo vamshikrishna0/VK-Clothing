@@ -1,2 +1,41 @@
 @import "tailwindcss";
 
+.animate-marquee {
+  display: inline-block;
+  min-width: 100%;
+  animation: scroll-left 15s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+.home-marquee {
+  display: inline-block;
+  min-width: 100%;
+  animation: home-scroll 18s linear infinite;
+}
+
+@keyframes home-scroll {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+

@@ -1,6 +1,8 @@
 import React, { useState , useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from './CartContext';
+import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 function Women() {
   const [filter, setFilter] = useState('all');
@@ -138,12 +140,27 @@ function Women() {
 
       {/* Category Banners */}
       {filter === 'all' && (
-        <img
-          src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/homepage_hDIM8hz.jpg?format=webp&w=1500&dpr=1.7"
-          alt="Main Banner"
-          className='w-full mb-8 rounded-xl shadow-md'
-        />
-      )}
+                <div className="mb-8 rounded-xl shadow-lg overflow-hidden">
+                  <Carousel
+                    autoPlay
+                    infiniteLoop
+                    showThumbs={false}
+                    showStatus={false}
+                    interval={4000}
+                    transitionTime={1000}
+                  >
+                    <div>
+                      <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/homepage_hDIM8hz.jpg?format=webp&w=1500&dpr=1.7" alt="Banner 1" />
+                    </div>
+                    <div>
+                      <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/homepage_29.jpg?format=webp&w=1500&dpr=1.7" alt="Banner 2" />
+                    </div>
+                    <div>
+                      <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/homepage_10_nzfQMY7.jpg?format=webp&w=1500&dpr=1.7" alt="Banner 3" />
+                    </div>
+                  </Carousel>
+                </div>
+              )}
       {filter === 'shirts' && (
         <img
           src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/category/catban-420250513131303.jpg?format=webp&w=1500&dpr=1.7"

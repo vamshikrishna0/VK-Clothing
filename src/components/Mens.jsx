@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from './CartContext';
+import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+
 
 function Mens() {
   const [filter, setFilter] = useState('all');
@@ -116,6 +119,12 @@ function Mens() {
   return (
     <div className={`pt-10 px-4 transition-opacity duration-1000 ${fadeIn ? 'opacity-100' : 'opacity-0'}`}>
       <h1 className='text-4xl text-center mb-8 text-blue-900 font-extrabold tracking-wide'>Men's Premium Collection</h1>
+      <div className="w-full overflow-hidden bg-gradient-to-r from-orange-500 to-yellow-400 text-white font-bold py-2 mb-6">
+        <div className="whitespace-nowrap animate-marquee text-center text-sm sm:text-base">
+          🔥 SALE HAPPENING SOON — Stay tuned for massive discounts on Men's Collection! 🔥 SALE HAPPENING SOON — Stay tuned for massive discounts on Men's Collection! 🔥
+        </div>
+      </div>
+
 
       {/* Filter Buttons */}
       <div className='flex justify-center gap-4 flex-wrap mb-10'>
@@ -135,8 +144,47 @@ function Mens() {
 
       {/* Banners */}
       {filter === 'all' && (
+          <div className="mb-8 rounded-xl shadow-lg overflow-hidden">
+            <Carousel
+              autoPlay
+              infiniteLoop
+              showThumbs={false}
+              showStatus={false}
+              interval={4000}
+              transitionTime={800}
+            >
+              <div>
+                <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/homepage_pMbv5fd.jpg?format=webp&w=1500&dpr=1.7" alt="Banner 1" />
+              </div>
+              <div>
+                <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/homepage_I67mC76.jpg?format=webp&w=1500&dpr=1.7" alt="Banner 2" />
+              </div>
+              <div>
+                <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/Made_for_the_modern_explorer_-_Homepage__banner_copy_I2hm4mh.jpg?format=webp&w=1500&dpr=1.7" alt="Banner 3" />
+              </div>
+            </Carousel>
+          </div>
+        )}
+
+        {filter === 'shirts' && (
         <img
-          src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/homepage_pMbv5fd.jpg?format=webp&w=1500&dpr=1.7"
+          src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/Home_Page_-_souled_in_lenin.jpg?format=webp&w=1500&dpr=1.7"
+          className='w-full mb-8 rounded-xl shadow-lg'
+          alt='All Clothing'
+        />
+      )}
+
+        {filter === 'tshirts' && (
+        <img
+          src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/category/catban-220250610141356.jpg?format=webp&w=1500&dpr=1.7"
+          className='w-full mb-8 rounded-xl shadow-lg'
+          alt='All Clothing'
+        />
+      )}
+
+      {filter === 'anime' && (
+        <img
+          src="https://www.bewakoof.com/_next/image?url=https%3A%2F%2Fimages.bewakoof.com%2Fuploads%2Fcategory%2Fdesktop%2FInsideBanner-desktop-NarutoShippuden-02-1744132179.jpg&w=1920&q=75"
           className='w-full mb-8 rounded-xl shadow-lg'
           alt='All Clothing'
         />

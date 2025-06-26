@@ -114,6 +114,12 @@ function Sneakers() {
     <div className={`pt-10 px-4 min-h-screen transition-opacity duration-1000 ${fadeIn ? 'opacity-100' : 'opacity-0'}`}>
       <h1 className='text-4xl text-center mb-8 text-yellow-400 font-extrabold drop-shadow-sm uppercase'>"Sneaker" Attack Zone</h1>
 
+      <div className="w-full overflow-hidden bg-black text-white font-bold py-2 mb-6">
+        <div className="home-marquee whitespace-nowrap text-center text-sm sm:text-base">
+          🚨 MEGA SALE LIVE NOW | NEW DROPS EVERY WEEK | FREE SHIPPING ON ORDERS ABOVE ₹499 🚨 MEGA SALE LIVE NOW | NEW DROPS EVERY WEEK | FREE SHIPPING ON ORDERS ABOVE ₹499 🚨
+        </div>
+      </div>
+
       {/* Filter Buttons */}
       <div className='flex justify-center gap-4 flex-wrap mb-10'>
         <button onClick={() => setFilter('all')} className={filterBtnStyle(filter === 'all')}>All</button>

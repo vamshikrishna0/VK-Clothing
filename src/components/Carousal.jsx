@@ -26,6 +26,7 @@ const Carousal = () => {
   };
 
   return (
+    
     <div className="relative w-full aspect-[3/2] sm:aspect-[3/1.5] md:aspect-[16/6] lg:aspect-[16/6] overflow-hidden mt-4 rounded-xl shadow-lg">
       {/* Background Image */}
       <img
