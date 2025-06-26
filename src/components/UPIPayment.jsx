@@ -31,9 +31,9 @@ function UPIPayment() {
   const handleSubmit = () => {
     const newErrors = {};
     if (!name.trim()) newErrors.name = 'Full name is required.';
-    if (!phone.trim()) newErrors.phone = 'Phone number is required.';
+    if (!/^\d{10}$/.test(phone)) newErrors.phone = 'Phone number must be 10 digits.';
+    if (!/^\d{6}$/.test(pinCode)) newErrors.pinCode = 'PIN code must be 6 digits.';
     if (!address.trim()) newErrors.address = 'Billing address is required.';
-    if (!pinCode.trim()) newErrors.pinCode = 'PIN code is required.';
     if (!city) newErrors.city = 'City selection is required.';
     if (!selectedApp && !upiId.trim()) newErrors.upi = 'Select a UPI app or enter UPI ID.';
 
@@ -81,16 +81,17 @@ function UPIPayment() {
           />
           {errors.name && <p className="text-sm text-red-600">{errors.name}</p>}
         </div>
-        <div>
-          <input
+        <input
             type="tel"
+            inputMode="numeric"
+            pattern="[0-9]{10}"
+            maxLength={10}
             value={phone}
             onChange={(e) => { setPhone(e.target.value); clearError('phone'); }}
-            placeholder="Phone Number"
+            placeholder="Phone Number (10 digits)"
             className="w-full border p-2 rounded"
           />
           {errors.phone && <p className="text-sm text-red-600">{errors.phone}</p>}
-        </div>
         <div>
           <textarea
             value={address}
@@ -101,16 +102,19 @@ function UPIPayment() {
           />
           {errors.address && <p className="text-sm text-red-600">{errors.address}</p>}
         </div>
-        <div>
+       
           <input
             type="text"
+            inputMode="numeric"
+            pattern="[0-9]{6}"
+            maxLength={6}
             value={pinCode}
             onChange={(e) => { setPinCode(e.target.value); clearError('pinCode'); }}
-            placeholder="PIN Code"
+            placeholder="PIN Code (6 digits)"
             className="w-full border p-2 rounded"
           />
           {errors.pinCode && <p className="text-sm text-red-600">{errors.pinCode}</p>}
-        </div>
+
         <div>
           <select
             value={city}

@@ -30,7 +30,9 @@ function CODPayment() {
     const newErrors = {};
     if (!details.firstName.trim()) newErrors.firstName = 'First name is required.';
     if (!details.lastName.trim()) newErrors.lastName = 'Last name is required.';
-    if (!details.mobile.trim()) newErrors.mobile = 'Mobile number is required.';
+    if (!/^\d{10}$/.test(details.mobile.trim())) {
+        newErrors.mobile = 'Enter a valid 10-digit mobile number.';
+      }
     if (!details.address.trim()) newErrors.address = 'Delivery address is required.';
     if (!details.city.trim()) newErrors.city = 'City is required.';
 
@@ -90,16 +92,22 @@ function CODPayment() {
       </div>
 
       <div>
-        <input
-          type="tel"
-          name="mobile"
-          placeholder="Mobile Number"
-          value={details.mobile}
-          onChange={handleChange}
-          className="w-full border p-2 rounded"
-        />
-        {errors.mobile && <p className="text-sm text-red-600">{errors.mobile}</p>}
-      </div>
+          <label className="block text-sm font-medium mb-1">Mobile Number</label>
+          <div className="flex items-center border rounded p-2">
+            <span className="text-gray-500 mr-2 text-sm">+91</span>
+            <input
+              type="tel"
+              name="mobile"
+              placeholder="10-digit number"
+              value={details.mobile}
+              onChange={handleChange}
+              className="w-full outline-none"
+            />
+          </div>
+          <p className="text-xs text-gray-400 mt-1">{details.mobile.length}/10 digits</p>
+          {errors.mobile && <p className="text-sm text-red-600">{errors.mobile}</p>}
+        </div>
+
 
       <div>
         <textarea

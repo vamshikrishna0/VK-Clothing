@@ -5,6 +5,7 @@ import Signin from './components/Signin';
 import Signup from "./components/Signup";
 import Mens from "./components/Mens";
 import Women from "./components/Women";
+import ScrolltoTop from './components/ScrolltoTop';
 import Cart from "./components/Cart";
 import More from "./components/More";
 import Sneakers from "./components/Sneakers";
@@ -21,6 +22,7 @@ function App() {
   return (
     <CartProvider>
       <SearchProvider>
+         <ScrolltoTop />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Carousal />} />

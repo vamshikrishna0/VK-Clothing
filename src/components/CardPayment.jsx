@@ -47,6 +47,10 @@ function CardPayment() {
     if (!fullName.trim()) errors.fullName = 'Full name is required.';
     if (!cardHolder.trim()) errors.cardHolder = 'Cardholder name is required.';
     if (!cardNumber.trim()) errors.cardNumber = 'Card number is required.';
+    if (!/^\d{16}$/.test(cardNumber)) errors.cardNumber = 'Card number must be 16 digits.';
+    if (!/^\d{3}$/.test(cvv)) errors.cvv = 'CVV must be 3 digits.';
+    if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiry)) errors.expiry = 'Use MM/YY format.';
+    if (!/^\d{4,6}$/.test(otp)) errors.otp = 'Enter 4 to 6 digit OTP or PIN.';
     if (cardCategory === 'credit') {
       if (!expiry.trim()) errors.expiry = 'Expiry date is required.';
       if (!cvv.trim()) errors.cvv = 'CVV is required.';
@@ -89,7 +93,7 @@ function CardPayment() {
       <h2 className="text-2xl font-bold mb-4 text-center">Card Payment</h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-        {['fullName', 'cardHolder', 'address', 'location', 'landmark'].map((field) => (
+        {['FullName', 'CardHolder', 'address', 'location', 'landmark'].map((field) => (
           <div key={field}>
             <input
               name={field}
@@ -158,10 +162,15 @@ function CardPayment() {
         <div>
           <input
             name="cardNumber"
-            placeholder="Card Number"
+            type="text"
+            inputMode="numeric"
+            pattern="[0-9]{16}"
+            maxLength={16}
+            placeholder="Card Number (16 digits)"
             onChange={handleChange}
             className="border p-2 rounded w-full"
           />
+
           {formErrors.cardNumber && <p className="text-sm text-red-600">{formErrors.cardNumber}</p>}
         </div>
 
@@ -170,30 +179,43 @@ function CardPayment() {
             <div>
               <input
                 name="expiry"
+                type="text"
+                pattern="(0[1-9]|1[0-2])\/[0-9]{2}"
                 placeholder="Expiry (MM/YY)"
                 onChange={handleChange}
                 className="border p-2 rounded w-full"
               />
+
               {formErrors.expiry && <p className="text-sm text-red-600">{formErrors.expiry}</p>}
             </div>
             <div>
               <input
                 name="cvv"
-                placeholder="CVV"
+                type="password"
+                inputMode="numeric"
+                pattern="[0-9]{3}"
+                maxLength={3}
+                placeholder="CVV (3 digits)"
                 onChange={handleChange}
                 className="border p-2 rounded w-full"
               />
+
               {formErrors.cvv && <p className="text-sm text-red-600">{formErrors.cvv}</p>}
             </div>
           </>
         ) : (
           <div>
             <input
-              name="otp"
-              placeholder="Enter OTP or Card PIN"
-              onChange={handleChange}
-              className="border p-2 rounded w-full"
-            />
+                name="otp"
+                type="password"
+                inputMode="numeric"
+                pattern="[0-9]{4,6}"
+                maxLength={6}
+                placeholder="Enter OTP or Card PIN"
+                onChange={handleChange}
+                className="border p-2 rounded w-full"
+              />
+
             {formErrors.otp && <p className="text-sm text-red-600">{formErrors.otp}</p>}
           </div>
         )}
